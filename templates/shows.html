@@ -2,7 +2,6 @@
 {% block title %}Shows{% endblock %}
 
 {% block body %}
-    <h1>TEST</h1>
 <div id="body-wrapper">
     <header class="clearfix">
         <img id="header-logo" src="{{ url_for('static', filename='assets/codecool-logo.png') }}" alt="Codecool Logo">
@@ -39,18 +38,33 @@
                         <button type="button" class="icon-button"><i class="fa fa-edit fa-fw"></i></button>
                         <button type="button" class="icon-button"><i class="fa fa-trash fa-fw"></i></button>
                     </td>
-                    <td>{{ show.title }}</td>
+                    <td><a href="/show/{{ show.id }}"> {{ show.title }}</a></td>
                     <td>{{ show.year }}</td>
                     <td>{{ show.runtime }}</td>
                     <td>{{ show.rating }}</td>
                     <td>{{ show.genres }}</td>
-                    <td>{{ show.trailer }}</td>
+                    {% if show.trailer %}
+                    <td><a target="_blank" href="{{ show.trailer }}"> {{ show.trailer }}</a></td>
+                    {% else %}
+                    <td>No URL</td>
+                    {% endif %}
                     <td>{{ show.homepage }}</td>
+
                 </tr>
                 {% endfor %}
-
                 </tbody>
             </table>
+        </div>
+        <div class="card">
+            <div class="pagination"> &laquo;
+                {% for n in range(page_count-1) %}
+                    {% if n == page_number %}
+                        <a class="active" href="#"> {{ n+1 }}</a>
+                    {% else %}
+                        <a  href="{{url_for('show_most_rated',page_number=n)}}"> {{ n+1 }}</a>
+                    {% endif %}
+                {% endfor %} &raquo;
+            </div>
         </div>
 
     </section>
