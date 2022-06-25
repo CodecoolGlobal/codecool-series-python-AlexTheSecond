@@ -1,0 +1,65 @@
+{% extends "index.html" %}
+{% block title %}Shows{% endblock %}
+
+{% block body %}
+    <h1>TEST</h1>
+<div id="body-wrapper">
+    <header class="clearfix">
+        <img id="header-logo" src="{{ url_for('static', filename='assets/codecool-logo.png') }}" alt="Codecool Logo">
+        <span id="header-title" class="title">
+                    Codecool Series DB
+                </span>
+        <div id="header-auth">
+            <button type="button" id="bt-register">Register</button>
+            <button type="button" id="bt-login">Login</button>
+        </div>
+    </header>
+    <section>
+        <h1 class="title text-center">SHOWS</h1>
+        <div class="card">
+            This is an example for a table:
+            <table>
+                <thead>
+                <tr>
+                    <th class="action-column">Actions</th>
+                    <th>Title</th>
+                    <th>Year</th>
+                    <th>Runtime (min)</th>
+                    <th>Rating</th>
+                    <th>Genres</th>
+                    <th>Trailer</th>
+                    <th>Homepage</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for show in shows %}
+                <tr>
+                    <td class="action-column">
+                        <button type="button" class="icon-button"><i class="fa fa-edit fa-fw"></i></button>
+                        <button type="button" class="icon-button"><i class="fa fa-trash fa-fw"></i></button>
+                    </td>
+                    <td>{{ show.title }}</td>
+                    <td>{{ show.year }}</td>
+                    <td>{{ show.runtime }}</td>
+                    <td>{{ show.rating }}</td>
+                    <td>{{ show.genres }}</td>
+                    <td>{{ show.trailer }}</td>
+                    <td>{{ show.homepage }}</td>
+                </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+    <footer>
+        Copyright, bla-bla 2
+    </footer>
+</div>
+<div class="background">
+    <div class="dark-blue-layer"></div>
+    <div class="light-blue-layer"></div>
+</div>
+{% endblock %}
